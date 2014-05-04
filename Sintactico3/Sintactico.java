@@ -103,7 +103,10 @@ public class Sintactico {
 				
 				switch(regla+1){
 				
-					
+				case 1:
+					new R1(pila);
+					break;
+				
 				default:
 					for(int i=0;i<ionReglas[regla]*2;i++) pila.pop();
 					break;
