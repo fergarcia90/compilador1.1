@@ -15,7 +15,7 @@ public class TipoSimbolo{
 	public static final int OPNOT = 10;
 	public static final int OPIGUALDAD = 11;
 	public static final int PUNTOYCOMA = 12;
-	public static final int APOSTROFO = 13;
+	public static final int COMA = 13;
 	public static final int PARENTESIS1 = 14;
 	public static final int PARENTESIS2 = 15;
 	public static final int LLAVE1 = 16;

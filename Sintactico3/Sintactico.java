@@ -130,22 +130,22 @@ public class Sintactico {
 		
 		if(accion.elemento==-1){
 			System.out.println("Aceptacion");
-			imprimeArbol((Expresion)nt.nodo);
+			//imprimeArbol((Expresion)nt.nodo);
 			new Grafico().setVisible(true);
 		}
 		if(accion.elemento==0) System.out.println("Error");
 	}
 	
 	
-	public void imprimeArbol(Expresion E){
+	/*public void imprimeArbol(Expresion E){
 		if(E==null) return;
-		ArrayDeque<Expresion> currentlevel,nextlevel;
-		currentlevel=new ArrayDeque<Expresion>();
-		nextlevel=new ArrayDeque<Expresion>();
+		ArrayDeque<Nodo> currentlevel,nextlevel;
+		currentlevel=new ArrayDeque<Nodo>();
+		nextlevel=new ArrayDeque<Nodo>();
 		
 		currentlevel.add(E);
 		while(!currentlevel.isEmpty()){
-			Expresion currNode=currentlevel.poll();
+			Nodo currNode=currentlevel.poll();
 			if(currNode!=null){
 				currNode.muestra();
 				if(currNode.izq!=null)
@@ -162,7 +162,7 @@ public class Sintactico {
 			}
 		}
 	}
-	
+	*/
 	
 	public static void main(String args[]){
 		Lexico lexico=new Lexico("a+b+c+4");

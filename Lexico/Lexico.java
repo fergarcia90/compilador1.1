@@ -40,9 +40,9 @@ public class Lexico {
             cad= "Fin de la Entrada";
             break;            
 
-      /* case TipoSimbolo.ENTERO:
+       case TipoSimbolo.ENTERO:
             cad= "Entero";
-            break;*/
+            break;
 		
 	   case TipoSimbolo.REAL:
 		   cad= "Real";
@@ -86,6 +86,10 @@ public class Lexico {
 
 	   case TipoSimbolo.PUNTOYCOMA:
 		   cad = "Punto y coma";
+		   break;
+		   
+	   case TipoSimbolo.COMA:
+		   cad = "Coma";
 		   break;
 
 	   case TipoSimbolo.TIPO:
@@ -168,6 +172,8 @@ public class Lexico {
 				  if (c == '$') aceptacion(20);
 				  else
 				  if (c == '"') sigEstado(21);
+				  else
+				  if (c == ',') aceptacion(23);
 				  
 				  break;
 
@@ -316,7 +322,11 @@ public class Lexico {
 				 case 22:
 					 tipo = TipoSimbolo.CADENA;
 					 break;
-		              
+				 
+				 case 23:
+					 tipo = TipoSimbolo.COMA;
+					 break;
+		             
 		        default:                 
 		              tipo= TipoSimbolo.ERROR;
 					  break;
