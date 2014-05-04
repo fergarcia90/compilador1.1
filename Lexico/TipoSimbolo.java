@@ -4,11 +4,11 @@ public class TipoSimbolo{
 	public static final int ERROR= -1;       
 	public static final int IDENTIFICADOR= 0;
 	public static final int ENTERO= 1;
-	public static final int REAL= 222;
-	public static final int CADENA= 333;       
-	public static final int TIPO= 44;
-	public static final int OPSUMA= 3;
-	public static final int OPMUL = 2;
+	public static final int REAL= 2;
+	public static final int CADENA= 3;       
+	public static final int TIPO= 4;
+	public static final int OPSUMA= 5;
+	public static final int OPMUL = 6;
 	public static final int OPRELAC = 7;
 	public static final int OPOR = 8 ;
 	public static final int OPAND = 9;
@@ -25,5 +25,5 @@ public class TipoSimbolo{
 	public static final int WHILE = 20;
 	public static final int RETURN = 21;
 	public static final int ELSE = 22;
-	public static final int PESOS = 4;
+	public static final int PESOS = 23;
 }

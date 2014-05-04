@@ -27,62 +27,59 @@ class Expresion extends Nodo{
 	}
 }
 
-class Identificador extends Expresion{
+class R1 extends Nodo{
 	
-	public Identificador(Pila pila){
-		super();
+	public R1(Pila pila){
 		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
+		sig=(Nodo)((NoTerminal)pila.pop()).nodo;
 	}
 	
 	public void muestra(){
-		System.out.print(simbolo+" ");
+		
 	}
 }
 
-class Entero extends Expresion{
+class R3 extends Expresion{
 	
-	public Entero(Pila pila){
-		super();
-		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
-	}
-	
-	public void muestra(){
-		System.out.print(simbolo+" ");
-	}
-}
-
-class Suma extends Expresion{
-	
-	public Suma(Pila pila){
-		super();
-		pila.pop();
-		der=(Expresion)((NoTerminal)pila.pop()).nodo;
-		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
+	public R3(Pila pila){
 		pila.pop();
 		izq=(Expresion)((NoTerminal)pila.pop()).nodo;
-	}
-	
-	public void muestra(){
-		System.out.print(simbolo+" ");
+		pila.pop();
+		der=(Expresion)((NoTerminal)pila.pop()).nodo;
 	}
 }
 
-class Multiplicacion extends Expresion{
+class R4 extends Nodo{
 	
-	public Multiplicacion(Pila pila){
-		super();
+	public R4(Pila pila){
 		pila.pop();
-		der=(Expresion)((NoTerminal)pila.pop()).nodo;
-		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
-		pila.pop();
-		izq=(Expresion)((NoTerminal)pila.pop()).nodo;
+		sig=(Nodo)((NoTerminal)pila.pop()).nodo;
 	}
 	
 	public void muestra(){
-		System.out.print(simbolo+" ");
+		
+	}
+}
+
+class R5 extends Nodo{
+	
+	public R5(Pila pila){
+		pila.pop();
+		sig=(Nodo)((NoTerminal)pila.pop()).nodo;
+	}
+	
+	public void muestra(){
+		
+	}
+}
+
+class R6 extends Nodo{
+	
+	public R6(Pila pila){
+		pila.pop();
+	}
+	
+	public void muestra(){
+		
 	}
 }

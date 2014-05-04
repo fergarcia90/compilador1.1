@@ -102,26 +102,7 @@ public class Sintactico {
 				int regla=(accion.elemento+2)*-1;
 				
 				switch(regla+1){
-				case 1://Multiplicacion 
-					nodo=new Multiplicacion(pila);
-					break;
 				
-				case 2://Suma
-					nodo=new Suma(pila);
-					break;
-					
-				case 3://<Expresion>::=<Termino>
-					pila.pop();
-					nodo=((NoTerminal)pila.pop()).nodo;
-					break;
-					
-				case 4://Identificador
-					nodo=new Identificador(pila);
-					break;
-					
-				case 5://Entero
-					nodo=new Entero(pila);
-					break;
 					
 				default:
 					for(int i=0;i<ionReglas[regla]*2;i++) pila.pop();
