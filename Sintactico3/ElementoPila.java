@@ -30,6 +30,7 @@ class NoTerminal extends ElementoPila{
 	public NoTerminal(String id,int elemento){
 		this.id=id;
 		this.elemento=elemento;
+		nodo=null;
 	}
 	
 	public void muestra(){

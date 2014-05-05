@@ -70,7 +70,7 @@ public class Sintactico {
 	public void analiza(Lexico lexico){
 		Pila pila=new Pila();
 		ElementoPila fila,columna,accion;
-		Nodo nodo=null;
+		Nodo nodo;
 		NoTerminal nt=null;
 		
 		pila.push(new Terminal("$",TipoSimbolo.PESOS));
@@ -86,6 +86,7 @@ public class Sintactico {
 		
 		
 		while(accion.elemento!=0 && accion.elemento!=-1){
+			nodo=null;
 			if(accion.elemento>0){
 				pila.push(new Terminal(lexico.simbolo,lexico.tipo));
 				pila.push(accion);
@@ -313,7 +314,7 @@ public class Sintactico {
 		while(!currentlevel.isEmpty()){
 			Nodo currNode=currentlevel.poll();
 				if(currNode!=null){
-					System.out.print(currNode.simbolo+" ");
+					currNode.muestra();
 					if(currNode.izq!=null)
 						nextlevel.add(currNode.izq);
 					if(currNode.der!=null)
@@ -331,8 +332,17 @@ public class Sintactico {
 		}
 	}
 	
+	public void imprimeArbol2(Nodo N){
+		if(N==null) return;
+		
+		N.muestra();System.out.println();
+		imprimeArbol2(N.sig);
+		imprimeArbol2(N.izq);
+		imprimeArbol2(N.der);
+	}
+	
 	public static void main(String args[]){
-		Lexico lexico=new Lexico("int a;");
+		Lexico lexico=new Lexico("int a; void main(){a=0;}");
 		Sintactico sint=new Sintactico();
 		sint.analiza(lexico);
 	}
