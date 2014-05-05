@@ -147,42 +147,46 @@ class R11 extends Nodo{
 		simbolo1[1]=((Terminal)pila.pop()).id;
 		pila.pop();
 		simbolo1[0]=((Terminal)pila.pop()).id;
+		id="<Parametros> ";
 	}
 	
 	public void muestra(){
-		System.out.print(id+" "+simbolo);
+		System.out.print(id+" "+simbolo1[1]+" "+simbolo1[0]+" "+sig.id);
 	}
 }
 
 class R13 extends Nodo{
-	
+	String simbolo1[]=new String[3];
 	public R13(Pila pila){
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
+		simbolo1[0]=((Terminal)pila.pop()).id;
 		pila.pop();
-		simbolo=" "+((Terminal)pila.pop()).id;
+		simbolo1[1]=((Terminal)pila.pop()).id;
+		pila.pop();
+		simbolo1[2]=((Terminal)pila.pop()).id;
+		id="<ListaParam> ";
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" "+simbolo1[2]+" "+simbolo1[1]+" "+simbolo1[0]+" "+sig.id);
 	}
 }
 
 class R14 extends Nodo{
-	
+	String simbolo1[]=new String[2];
 	public R14(Pila pila){
 		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
+		simbolo1[0]=((Terminal)pila.pop()).id;
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
+		simbolo1[1]=((Terminal)pila.pop()).id;
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" "+simbolo1[2]+" "+sig.id+" "+simbolo1[1]);
 	}
 }
 
@@ -195,7 +199,7 @@ class R16 extends Nodo{
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" "+izq.id+" "+der.id);
 	}
 }
 
@@ -206,7 +210,7 @@ class R17 extends Nodo{
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" ");
 	}
 }
 
