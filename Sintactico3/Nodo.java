@@ -2,19 +2,18 @@ package Sintactico3;
 
 public abstract class Nodo {
 	
-	protected String simbolo;
-	public Nodo sig;
+	protected String simbolo,id;
+	public Nodo sig,der,izq;
 	
 	public Nodo(){
-		sig=null;
+		sig=der=izq=null;
 	}
 	
 	public abstract void muestra();
 
 }
 
-class Expresion extends Nodo{
-	
+/*class Expresion extends Nodo{	
 	protected Nodo izq,der;
 	
 	public Expresion(){
@@ -25,27 +24,32 @@ class Expresion extends Nodo{
 	public void muestra(){
 		
 	}
-}
+}*/
 
 class R1 extends Nodo{
 	
 	public R1(Pila pila){
 		pila.pop();
 		sig=(Nodo)((NoTerminal)pila.pop()).nodo;
+		id="<Programa>";
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" ");
 	}
 }
 
-class R3 extends Expresion{
+class R3 extends Nodo{
 	
 	public R3(Pila pila){
 		pila.pop();
 		izq= ((NoTerminal)pila.pop()).nodo;
 		pila.pop();
 		der= ((NoTerminal)pila.pop()).nodo;
+		id="<Definiciones> ";
+	}
+	public void muestra(){
+		System.out.print(id+" ");
 	}
 }
 
@@ -54,10 +58,11 @@ class R4 extends Nodo{
 	public R4(Pila pila){
 		pila.pop();
 		sig=(Nodo)((NoTerminal)pila.pop()).nodo;
+		id="<Definicion> ";
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" ");
 	}
 }
 
@@ -66,78 +71,86 @@ class R5 extends Nodo{
 	public R5(Pila pila){
 		pila.pop();
 		sig=(Nodo)((NoTerminal)pila.pop()).nodo;
+		id="<Definicion> ";
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" ");
 	}
 }
 
 class R6 extends Nodo{
+	String simbolo1[]=new String[3];
 	
 	public R6(Pila pila){
 		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
+		simbolo1[0]=((Terminal)pila.pop()).id;
 		pila.pop();
 		sig=(Nodo)((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo+="<DefVar> "+((Terminal)pila.pop()).id;
+		simbolo1[1]=((Terminal)pila.pop()).id;
 		pila.pop();
-		simbolo+=" "+((Terminal)pila.pop()).id;
+		simbolo1[2]+=((Terminal)pila.pop()).id;
+		id="<DefVar> ";
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" "+simbolo1[2]+" "+simbolo1[1]+" "+sig.id+" "+simbolo1[0]);
 	}
 }
 
 class R8 extends Nodo{
-	
+	String simbolo1[]=new String[2];
 	public R8(Pila pila){
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
+		simbolo1[0]=((Terminal)pila.pop()).id;
 		pila.pop();
-		simbolo=" "+((Terminal)pila.pop()).id;
+		simbolo1[1]=((Terminal)pila.pop()).id;
+		id="<ListaVar> ";
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" "+simbolo1[1]+" "+simbolo1[0]+" "+sig.id);
 	}
 }
 
-class R9 extends Expresion{
-	
+class R9 extends Nodo{
+	String simbolo1[]=new String[4];
 	public R9(Pila pila){
 		pila.pop();
 		der= ((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
+		simbolo1[0]=((Terminal)pila.pop()).id;
 		pila.pop();
 		izq= ((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo+=" <Parametros> "+((Terminal)pila.pop()).id;
+		simbolo1[1]=((Terminal)pila.pop()).id;
 		pila.pop();
-		simbolo+=" "+((Terminal)pila.pop()).id;
+		simbolo1[2]=((Terminal)pila.pop()).id;
 		pila.pop();
-		simbolo+=" "+((Terminal)pila.pop()).id;
+		simbolo1[3]=((Terminal)pila.pop()).id;
+	}
+	
+	public void muestra(){
+		System.out.print(id+" "+simbolo1[3]+" "+simbolo1[2]+" "+simbolo1[1]+" "+izq.id+" "+simbolo1[0]+" "+der.id);
 	}
 }
 
 class R11 extends Nodo{
-	
+	String simbolo1[]=new String[2];
 	public R11(Pila pila){
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
+		simbolo1[1]=((Terminal)pila.pop()).id;
 		pila.pop();
-		simbolo=" "+((Terminal)pila.pop()).id;
+		simbolo1[0]=((Terminal)pila.pop()).id;
 	}
 	
 	public void muestra(){
-		
+		System.out.print(id+" "+simbolo);
 	}
 }
 
@@ -173,12 +186,16 @@ class R14 extends Nodo{
 	}
 }
 
-class R16 extends Expresion{
+class R16 extends Nodo{
 	public R16(Pila pila){
 		pila.pop();
 		der= ((NoTerminal)pila.pop()).nodo;
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
+	}
+	
+	public void muestra(){
+		
 	}
 }
 
@@ -204,7 +221,7 @@ class R18 extends Nodo{
 	}
 }
 
-class R20 extends Expresion{
+class R20 extends Nodo{
 	public R20(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
@@ -224,7 +241,7 @@ class R21 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo+=" Expresion "+((Terminal)pila.pop()).id;
+		simbolo+=" "+((Terminal)pila.pop()).id;
 		pila.pop();
 		simbolo+=" "+((Terminal)pila.pop()).id;
 	}
@@ -234,7 +251,7 @@ class R21 extends Nodo{
 	}
 }
 
-class R22 extends Expresion{
+class R22 extends Nodo{
 	public R22(Pila pila){
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
@@ -249,9 +266,13 @@ class R22 extends Expresion{
 		pila.pop();
 		simbolo+=" "+((Terminal)pila.pop()).id;
 	}
+	
+	public void muestra(){
+		
+	}
 }
 
-class R23 extends Expresion{
+class R23 extends Nodo{
 	public R23(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
@@ -260,9 +281,13 @@ class R23 extends Expresion{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo+=" <Expresion> "+((Terminal)pila.pop()).id;
+		simbolo+=" "+((Terminal)pila.pop()).id;
 		pila.pop();
 		simbolo+=" "+((Terminal)pila.pop()).id;
+	}
+	
+	public void muestra(){
+		
 	}
 }
 
@@ -314,7 +339,7 @@ class R28 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo+=" <Sentencias> "+((Terminal)pila.pop()).id;
+		simbolo+=" "+((Terminal)pila.pop()).id;
 	}
 	
 	public void muestra(){
@@ -333,16 +358,20 @@ class R30 extends Nodo{
 	}
 }
 
-class R32 extends Expresion{
+class R32 extends Nodo{
 	public R32(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 	}
+	
+	public void muestra(){
+		
+	}
 }
 
-class R34 extends Expresion{
+class R34 extends Nodo{
 	public R34(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
@@ -350,6 +379,10 @@ class R34 extends Expresion{
 		izq=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
 		simbolo=((Terminal)pila.pop()).id;
+	}
+	
+	public void muestra(){
+		
 	}
 }
 
@@ -415,7 +448,7 @@ class R40 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo+=" <Argumentos> "+((Terminal)pila.pop()).id;
+		simbolo+=" "+((Terminal)pila.pop()).id;
 		pila.pop();
 		simbolo+=" "+((Terminal)pila.pop()).id;
 	}
@@ -454,7 +487,7 @@ class R43 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		pila.pop();
-		simbolo+=" <Expresion> "+((Terminal)pila.pop()).id;
+		simbolo+=" "+((Terminal)pila.pop()).id;
 	}
 	
 	public void muestra(){
@@ -488,7 +521,7 @@ class R45 extends Nodo{
 	}
 }
 
-class R46 extends Expresion{
+class R46 extends Nodo{
 	public R46(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
@@ -497,9 +530,13 @@ class R46 extends Expresion{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 	}
+	
+	public void muestra(){
+		
+	}
 }
 
-class R47 extends Expresion{
+class R47 extends Nodo{
 	public R47(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
@@ -508,9 +545,13 @@ class R47 extends Expresion{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 	}
+	
+	public void muestra(){
+		
+	}
 }
 
-class R48 extends Expresion{
+class R48 extends Nodo{
 	public R48(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
@@ -519,9 +560,13 @@ class R48 extends Expresion{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 	}
+	
+	public void muestra(){
+		
+	}
 }
 
-class R49 extends Expresion{
+class R49 extends Nodo{
 	public R49(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
@@ -530,9 +575,13 @@ class R49 extends Expresion{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 	}
+	
+	public void muestra(){
+		
+	}
 }
 
-class R50 extends Expresion{
+class R50 extends Nodo{
 	public R50(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
@@ -541,9 +590,13 @@ class R50 extends Expresion{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 	}
+	
+	public void muestra(){
+		
+	}
 }
 
-class R51 extends Expresion{
+class R51 extends Nodo{
 	public R51(Pila pila){
 		pila.pop();
 		der=((NoTerminal)pila.pop()).nodo;
@@ -551,6 +604,10 @@ class R51 extends Expresion{
 		simbolo=((Terminal)pila.pop()).id;
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
+	}
+	
+	public void muestra(){
+		
 	}
 }
 

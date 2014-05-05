@@ -36,7 +36,7 @@ public class Sintactico {
 	int ionReglas[]={3,3,1};*/
 	
 	public Sintactico(){
-		archivo=new File("c:/Users/LuisFernando/Documents/Taller Compiladores/gramaticaCompilador/gramaticasEjemplo/ejemplo7.lr");
+		archivo=new File("/home/fernando/Documentos/Taller Compiladores/gramaticaCompilador/compilador.lr");
 		try {
 			lector= new FileReader(archivo);
 			bf=new BufferedReader(lector);
@@ -278,7 +278,6 @@ public class Sintactico {
 				//transicion
 				fila=pila.top();
 				columna=new NoTerminal(idReglas[regla],nReglas[regla]);
-				System.out.println(columna.elemento+" "+fila.elemento);
 				accion=new Estado(tablaLR[fila.elemento][columna.elemento]);
 				nt=new NoTerminal(idReglas[regla],nReglas[regla]);
 				nt.nodo=nodo;
@@ -297,14 +296,14 @@ public class Sintactico {
 		
 		if(accion.elemento==-1){
 			System.out.println("Aceptacion");
-			//imprimeArbol((Expresion)nt.nodo);
-			new Grafico().setVisible(true);
+			imprimeArbol(nt.nodo);
+			//new Grafico().setVisible(true);
 		}
 		if(accion.elemento==0) System.out.println("Error");
 	}
 	
 	
-	/*public void imprimeArbol(Expresion E){
+	public void imprimeArbol(Nodo E){
 		if(E==null) return;
 		ArrayDeque<Nodo> currentlevel,nextlevel;
 		currentlevel=new ArrayDeque<Nodo>();
@@ -313,26 +312,27 @@ public class Sintactico {
 		currentlevel.add(E);
 		while(!currentlevel.isEmpty()){
 			Nodo currNode=currentlevel.poll();
-			if(currNode!=null){
-				currNode.muestra();
-				if(currNode.izq!=null)
-				nextlevel.add(currNode.izq);
-				if(currNode.der!=null)
-				nextlevel.add(currNode.der);
-			}
+				if(currNode!=null){
+					System.out.print(currNode.simbolo+" ");
+					if(currNode.izq!=null)
+						nextlevel.add(currNode.izq);
+					if(currNode.der!=null)
+						nextlevel.add(currNode.der);
+					if(currNode.sig!=null)
+						nextlevel.add(currNode.sig);
+				}
 			if(currentlevel.isEmpty()){
 				System.out.println();
-				ArrayDeque<Expresion> c;
+				ArrayDeque<Nodo> c;
 				c=currentlevel;
 				currentlevel=nextlevel;
 				nextlevel=c;
 			}
 		}
 	}
-	*/
 	
 	public static void main(String args[]){
-		Lexico lexico=new Lexico("a+b+c+4");
+		Lexico lexico=new Lexico("int a;");
 		Sintactico sint=new Sintactico();
 		sint.analiza(lexico);
 	}
