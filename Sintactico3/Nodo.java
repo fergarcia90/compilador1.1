@@ -5,6 +5,7 @@ public abstract class Nodo {
 	protected String simbolo,id;
 	public Nodo sig,der,izq;
 	int tamSangria;
+	char tipoDato;
 	
 	public Nodo(){
 		sig=null;
@@ -14,6 +15,8 @@ public abstract class Nodo {
 	}
 	
 	public abstract void muestra();
+	
+	public abstract void validaDatos();
 
 }
 
@@ -43,6 +46,12 @@ class R1 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" ");
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R3 extends Nodo{
@@ -59,6 +68,11 @@ class R3 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" ");
 	}
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R4 extends Nodo{
@@ -74,6 +88,12 @@ class R4 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" ");
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R5 extends Nodo{
@@ -88,6 +108,12 @@ class R5 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" ");
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -111,6 +137,12 @@ class R6 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[2]+" "+simbolo1[1]+" "+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R8 extends Nodo{
@@ -129,6 +161,12 @@ class R8 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[1]+" "+simbolo1[0]);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -154,6 +192,12 @@ class R9 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[3]+" "+simbolo1[2]+" "+simbolo1[1]+" "+" "+simbolo1[0]);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
