@@ -218,6 +218,12 @@ class R11 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[1]+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R13 extends Nodo{
@@ -239,6 +245,12 @@ class R13 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[2]+" "+simbolo1[1]+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R14 extends Nodo{
@@ -258,6 +270,12 @@ class R14 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[1]+" "+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R16 extends Nodo{
@@ -274,6 +292,12 @@ class R16 extends Nodo{
 	public void muestra(){
 		System.out.print(id);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R17 extends Nodo{
@@ -288,6 +312,12 @@ class R17 extends Nodo{
 	public void muestra(){
 		System.out.print(id);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R18 extends Nodo{
@@ -301,6 +331,12 @@ class R18 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -317,6 +353,12 @@ class R20 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -338,6 +380,12 @@ class R21 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[2]+" "+simbolo1[1]+" "+simbolo1[0]);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -364,6 +412,12 @@ class R22 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[2]+" "+simbolo1[1]+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R23 extends Nodo{
@@ -387,6 +441,12 @@ class R23 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[2]+" "+simbolo1[1]+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R24 extends Nodo{
@@ -406,6 +466,12 @@ class R24 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[1]+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R25 extends Nodo{
@@ -422,6 +488,12 @@ class R25 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R27 extends Nodo{
@@ -437,6 +509,12 @@ class R27 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -457,6 +535,12 @@ class R28 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[1]+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R30 extends Nodo{
@@ -470,6 +554,12 @@ class R30 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -486,6 +576,12 @@ class R32 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -505,6 +601,12 @@ class R34 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R35 extends Nodo{
@@ -518,6 +620,12 @@ class R35 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -533,6 +641,12 @@ class R36 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R37 extends Nodo{
@@ -546,6 +660,12 @@ class R37 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -561,6 +681,12 @@ class R38 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R39 extends Nodo{
@@ -574,6 +700,12 @@ class R39 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -596,6 +728,12 @@ class R40 extends Nodo{
 	public void muestra(){
 		System.out.print(simbolo1[2]+" "+simbolo1[1]+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R41 extends Nodo{
@@ -610,6 +748,12 @@ class R41 extends Nodo{
 	public void muestra(){
 		System.out.print(id);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R42 extends Nodo{
@@ -623,6 +767,12 @@ class R42 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -643,6 +793,12 @@ class R43 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo1[1]+" "+simbolo1[0]);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R44 extends Nodo{
@@ -659,6 +815,12 @@ class R44 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R45 extends Nodo{
@@ -674,6 +836,12 @@ class R45 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -693,6 +861,12 @@ class R46 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R47 extends Nodo{
@@ -710,6 +884,12 @@ class R47 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -729,6 +909,12 @@ class R48 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R49 extends Nodo{
@@ -746,6 +932,12 @@ class R49 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
@@ -765,6 +957,12 @@ class R50 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R51 extends Nodo{
@@ -783,6 +981,12 @@ class R51 extends Nodo{
 	public void muestra(){
 		System.out.print(id+" "+simbolo);
 	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class R52 extends Nodo{
@@ -796,5 +1000,11 @@ class R52 extends Nodo{
 	
 	public void muestra(){
 		System.out.print(id);
+	}
+
+	@Override
+	public void validaDatos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
