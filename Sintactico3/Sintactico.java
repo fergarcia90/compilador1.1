@@ -309,18 +309,25 @@ public class Sintactico {
 		ArrayDeque<Nodo> currentlevel,nextlevel;
 		currentlevel=new ArrayDeque<Nodo>();
 		nextlevel=new ArrayDeque<Nodo>();
-		
 		currentlevel.add(E);
 		while(!currentlevel.isEmpty()){
 			Nodo currNode=currentlevel.poll();
+			
 				if(currNode!=null){
+					for(int i=0;i<currNode.tamSangria;i++) System.out.print("	");
 					currNode.muestra();
-					if(currNode.izq!=null)
+					if(currNode.izq!=null){
+						currNode.izq.tamSangria=currNode.tamSangria+1;
 						nextlevel.add(currNode.izq);
-					if(currNode.der!=null)
+					}
+					if(currNode.der!=null){
+						currNode.der.tamSangria=currNode.tamSangria+1;
 						nextlevel.add(currNode.der);
-					if(currNode.sig!=null)
+					}
+					if(currNode.sig!=null){
+						currNode.sig.tamSangria=currNode.tamSangria+1;
 						nextlevel.add(currNode.sig);
+					}
 				}
 			if(currentlevel.isEmpty()){
 				System.out.println();
@@ -335,6 +342,7 @@ public class Sintactico {
 	public void imprimeArbol2(Nodo N){
 		if(N==null) return;
 		
+		for(int i=0;i<N.tamSangria;i++) System.out.print("	");
 		N.muestra();System.out.println();
 		imprimeArbol2(N.sig);
 		imprimeArbol2(N.izq);

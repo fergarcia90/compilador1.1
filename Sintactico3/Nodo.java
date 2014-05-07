@@ -4,11 +4,13 @@ public abstract class Nodo {
 	
 	protected String simbolo,id;
 	public Nodo sig,der,izq;
+	int tamSangria;
 	
 	public Nodo(){
 		sig=null;
 		izq=null;
 		der=null;
+		tamSangria=0;
 	}
 	
 	public abstract void muestra();
@@ -35,8 +37,9 @@ class R1 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<Programa>";
+		//tamSangria=7;
 	}
-	
+							
 	public void muestra(){
 		System.out.print(id+" ");
 	}
@@ -51,6 +54,7 @@ class R3 extends Nodo{
 		pila.pop();
 		izq= ((NoTerminal)pila.pop()).nodo;
 		id="<Definiciones> ";
+		//tamSangria=7;
 	}
 	public void muestra(){
 		System.out.print(id+" ");
@@ -64,6 +68,7 @@ class R4 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<Definicion> ";
+		//tamSangria=5;
 	}
 	
 	public void muestra(){
@@ -78,6 +83,7 @@ class R5 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<Definicion> ";
+		//tamSangria=5;
 	}
 	
 	public void muestra(){
@@ -99,6 +105,7 @@ class R6 extends Nodo{
 		pila.pop();
 		simbolo1[2]=((Terminal)pila.pop()).id;
 		id="<DefVar> ";
+		//tamSangria=5;
 	}
 	
 	public void muestra(){
@@ -117,6 +124,7 @@ class R8 extends Nodo{
 		pila.pop();
 		simbolo1[1]=((Terminal)pila.pop()).id;
 		id="<ListaVar> ";
+		//tamSangria=5;
 	}
 	
 	public void muestra(){
@@ -141,6 +149,7 @@ class R9 extends Nodo{
 		pila.pop();
 		simbolo1[3]=((Terminal)pila.pop()).id;
 		id="<DefFunc> ";
+		//tamSangria=5;
 	}
 	
 	public void muestra(){
@@ -159,6 +168,7 @@ class R11 extends Nodo{
 		pila.pop();
 		simbolo1[0]=((Terminal)pila.pop()).id;
 		id="<Parametros> ";
+		//tamSangria=3;
 	}
 	
 	public void muestra(){
@@ -179,6 +189,7 @@ class R13 extends Nodo{
 		pila.pop();
 		simbolo1[2]=((Terminal)pila.pop()).id;
 		id="<ListaParam> ";
+		//tamSangria=3;
 	}
 	
 	public void muestra(){
@@ -197,6 +208,7 @@ class R14 extends Nodo{
 		pila.pop();
 		simbolo1[1]=((Terminal)pila.pop()).id;
 		id="<BloqFunc> ";
+		//tamSangria=3;
 	}
 	
 	public void muestra(){
@@ -212,6 +224,7 @@ class R16 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<DefLocales> ";
+		//tamSangria=3;
 	}
 	
 	public void muestra(){
@@ -225,6 +238,7 @@ class R17 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<DefLocal> ";
+		//tamSangria=2;
 	}
 	
 	public void muestra(){
@@ -238,6 +252,7 @@ class R18 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<DefLocal> ";
+		//tamSangria=2;
 	}
 	
 	public void muestra(){
@@ -253,6 +268,7 @@ class R20 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<Sentencias> ";
+		//tamSangria=2;
 	}
 	
 	public void muestra(){
@@ -273,6 +289,7 @@ class R21 extends Nodo{
 		pila.pop();
 		simbolo1[2]=((Terminal)pila.pop()).id;
 		id="<Sentencia> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -297,6 +314,7 @@ class R22 extends Nodo{
 		pila.pop();
 		simbolo1[2]=((Terminal)pila.pop()).id;
 		id="<Sentencia> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -319,6 +337,7 @@ class R23 extends Nodo{
 		pila.pop();
 		simbolo1[2]=((Terminal)pila.pop()).id;
 		id="<Sentencia> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -337,6 +356,7 @@ class R24 extends Nodo{
 		pila.pop();
 		simbolo1[1]=((Terminal)pila.pop()).id;
 		id="<Sentencia> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -352,6 +372,7 @@ class R25 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<Sentencia> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -367,6 +388,7 @@ class R27 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<Otro> ";
+		//tamSangria=5;
 	}
 	
 	public void muestra(){
@@ -385,6 +407,7 @@ class R28 extends Nodo{
 		pila.pop();
 		simbolo1[1]=((Terminal)pila.pop()).id;
 		id="<Bloque> ";
+		//tamSangria=3;
 	}
 	
 	public void muestra(){
@@ -398,6 +421,7 @@ class R30 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<ValorRegresa> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -413,6 +437,7 @@ class R32 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<Argumentos> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -430,6 +455,7 @@ class R34 extends Nodo{
 		pila.pop();
 		simbolo=((Terminal)pila.pop()).id;
 		id="<ListaArgumentos> ";
+		//tamSangria=3;
 	}
 	
 	public void muestra(){
@@ -443,6 +469,7 @@ class R35 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<Termino> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -456,6 +483,7 @@ class R36 extends Nodo{
 		pila.pop();
 		simbolo=((Terminal)pila.pop()).id;
 		id="<Termino> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -469,6 +497,7 @@ class R37 extends Nodo{
 		pila.pop();
 		simbolo=((Terminal)pila.pop()).id;
 		id="<Termino> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -482,6 +511,7 @@ class R38 extends Nodo{
 		pila.pop();
 		simbolo=((Terminal)pila.pop()).id;
 		id="<Termino> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -495,6 +525,7 @@ class R39 extends Nodo{
 		pila.pop();
 		simbolo=((Terminal)pila.pop()).id;
 		id="<Termino> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -515,6 +546,7 @@ class R40 extends Nodo{
 		pila.pop();
 		simbolo1[2]=((Terminal)pila.pop()).id;
 		id="<LlamadaFuncion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -528,6 +560,7 @@ class R41 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<SentenciaBloque> ";
+		//tamSangria=3;
 	}
 	
 	public void muestra(){
@@ -541,6 +574,7 @@ class R42 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<SentenciaBloque> ";
+		//tamSangria=3;
 	}
 	
 	public void muestra(){
@@ -559,6 +593,7 @@ class R43 extends Nodo{
 		pila.pop();
 		simbolo1[1]=((Terminal)pila.pop()).id;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -574,6 +609,7 @@ class R44 extends Nodo{
 		pila.pop();
 		simbolo=((Terminal)pila.pop()).id;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -589,6 +625,7 @@ class R45 extends Nodo{
 		pila.pop();
 		simbolo=((Terminal)pila.pop()).id;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -606,6 +643,7 @@ class R46 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -623,6 +661,7 @@ class R47 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -640,6 +679,7 @@ class R48 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -657,6 +697,7 @@ class R49 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -674,6 +715,7 @@ class R50 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -691,6 +733,7 @@ class R51 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
@@ -704,6 +747,7 @@ class R52 extends Nodo{
 		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
 		id="<Expresion> ";
+		//tamSangria=1;
 	}
 	
 	public void muestra(){
