@@ -1,17 +1,30 @@
 package Sintactico3;
 
+import Semantico.TablaSimbolos;
+
+
 public abstract class Nodo {
 	
 	protected String simbolo,id;
 	public Nodo sig,der,izq;
 	int tamSangria;
-	char tipoDato;
+	public char tipoDato;
+	public static String ambito;
+	public static TablaSimbolos tablasimbolos;
 	
 	public Nodo(){
 		sig=null;
 		izq=null;
 		der=null;
 		tamSangria=0;
+		tipoDato='v';
+	}
+	
+	public void validaTipos(){
+		tipoDato='v';
+		if(sig!=null) sig.validaTipos();
+		if(izq!=null) izq.validaTipos();
+		if(der!=null) der.validaTipos();
 	}
 	
 	public abstract void muestra();
@@ -117,141 +130,6 @@ class R5 extends Nodo{
 	}
 }
 
-class R6 extends Nodo{
-	String simbolo1[]=new String[3];
-	
-	public R6(Pila pila){
-		super();
-		pila.pop();
-		simbolo1[0]=((Terminal)pila.pop()).id;
-		pila.pop();
-		sig=((NoTerminal)pila.pop()).nodo;
-		pila.pop();
-		simbolo1[1]=((Terminal)pila.pop()).id;
-		pila.pop();
-		simbolo1[2]=((Terminal)pila.pop()).id;
-		id="<DefVar> ";
-		//tamSangria=5;
-	}
-	
-	public void muestra(){
-		System.out.print(id+" "+simbolo1[2]+" "+simbolo1[1]+" "+" "+simbolo1[0]);
-	}
-
-	@Override
-	public void validaDatos() {
-		// TODO Auto-generated method stub
-		
-	}
-}
-
-class R8 extends Nodo{
-	String simbolo1[]=new String[2];
-	public R8(Pila pila){
-		super();
-		pila.pop();
-		sig=((NoTerminal)pila.pop()).nodo;
-		pila.pop();
-		simbolo1[0]=((Terminal)pila.pop()).id;
-		pila.pop();
-		simbolo1[1]=((Terminal)pila.pop()).id;
-		id="<ListaVar> ";
-		//tamSangria=5;
-	}
-	
-	public void muestra(){
-		System.out.print(id+" "+simbolo1[1]+" "+simbolo1[0]);
-	}
-
-	@Override
-	public void validaDatos() {
-		// TODO Auto-generated method stub
-		
-	}
-}
-
-class R9 extends Nodo{
-	String simbolo1[]=new String[4];
-	public R9(Pila pila){
-		super();
-		pila.pop();
-		der= ((NoTerminal)pila.pop()).nodo;
-		pila.pop();
-		simbolo1[0]=((Terminal)pila.pop()).id;
-		pila.pop();
-		izq= ((NoTerminal)pila.pop()).nodo;
-		pila.pop();
-		simbolo1[1]=((Terminal)pila.pop()).id;
-		pila.pop();
-		simbolo1[2]=((Terminal)pila.pop()).id;
-		pila.pop();
-		simbolo1[3]=((Terminal)pila.pop()).id;
-		id="<DefFunc> ";
-		//tamSangria=5;
-	}
-	
-	public void muestra(){
-		System.out.print(id+" "+simbolo1[3]+" "+simbolo1[2]+" "+simbolo1[1]+" "+" "+simbolo1[0]);
-	}
-
-	@Override
-	public void validaDatos() {
-		// TODO Auto-generated method stub
-		
-	}
-}
-
-class R11 extends Nodo{
-	String simbolo1[]=new String[2];
-	public R11(Pila pila){
-		super();
-		pila.pop();
-		sig=((NoTerminal)pila.pop()).nodo;
-		pila.pop();
-		simbolo1[1]=((Terminal)pila.pop()).id;
-		pila.pop();
-		simbolo1[0]=((Terminal)pila.pop()).id;
-		id="<Parametros> ";
-		//tamSangria=3;
-	}
-	
-	public void muestra(){
-		System.out.print(id+" "+simbolo1[1]+" "+simbolo1[0]);
-	}
-
-	@Override
-	public void validaDatos() {
-		// TODO Auto-generated method stub
-		
-	}
-}
-
-class R13 extends Nodo{
-	String simbolo1[]=new String[3];
-	public R13(Pila pila){
-		super();
-		pila.pop();
-		sig=((NoTerminal)pila.pop()).nodo;
-		pila.pop();
-		simbolo1[0]=((Terminal)pila.pop()).id;
-		pila.pop();
-		simbolo1[1]=((Terminal)pila.pop()).id;
-		pila.pop();
-		simbolo1[2]=((Terminal)pila.pop()).id;
-		id="<ListaParam> ";
-		//tamSangria=3;
-	}
-	
-	public void muestra(){
-		System.out.print(id+" "+simbolo1[2]+" "+simbolo1[1]+" "+simbolo1[0]);
-	}
-
-	@Override
-	public void validaDatos() {
-		// TODO Auto-generated method stub
-		
-	}
-}
 
 class R14 extends Nodo{
 	String simbolo1[]=new String[2];
@@ -276,6 +154,14 @@ class R14 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if(sig!=null){
+			sig.tipoDato=tipoDato;
+			sig.validaTipos();
+		}
+	}
 }
 
 class R16 extends Nodo{
@@ -297,6 +183,18 @@ class R16 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		if(izq!=null){
+			izq.tipoDato=tipoDato;
+			izq.validaTipos();
+		}
+		if(der!=null){
+			der.tipoDato=tipoDato;
+			der.validaTipos();
+		}
 	}
 }
 
@@ -337,6 +235,14 @@ class R18 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		if(sig!=null){
+			sig.tipoDato=tipoDato;
+			sig.validaTipos();
+		}
 	}
 }
 
@@ -387,6 +293,34 @@ class R21 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if(tablasimbolos.varGlobalDefinida(simbolo1[2])){
+			if(sig!=null){
+				sig.validaTipos();
+				tablasimbolos.buscaIdentificador(simbolo1[2]);
+				if(tablasimbolos.varGlobal.tipo==sig.tipoDato)
+					tipoDato=sig.tipoDato;
+				else
+					tablasimbolos.listaErrores.add("Error: conflicto de tipos en asignacion de valor a variable \""
+							+simbolo1[2]+ "\"");
+			}
+		}
+		else if(tablasimbolos.varLocalDefinida(simbolo1[2], ambito)){
+			if(sig!=null){
+				sig.validaTipos();
+				tablasimbolos.buscaIdentificador(simbolo1[2]);
+				if(tablasimbolos.varLocal.tipo==sig.tipoDato)
+					tipoDato=sig.tipoDato;
+				else
+					tablasimbolos.listaErrores.add("Error: conflicto de tipos en asignacion de valor a variable \""
+							+simbolo1[2]+ "\"");
+			}
+		}
+		else
+			tablasimbolos.listaErrores.add("Error: variable \""+simbolo1[2]+"\" no definida");
+	}
 }
 
 class R22 extends Nodo{
@@ -418,6 +352,17 @@ class R22 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if(izq!=null){
+			izq.validaTipos();
+			if(izq.tipoDato=='b')
+				tipoDato='b';
+			else
+				tablasimbolos.listaErrores.add("Error: los argumentos de la funcion if deben regresar un boolean");
+		}
+	}
 }
 
 class R23 extends Nodo{
@@ -447,6 +392,17 @@ class R23 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if(izq!=null){
+			izq.validaTipos();
+			if(izq.tipoDato=='b')
+				tipoDato='b';
+			else
+				tablasimbolos.listaErrores.add("Error: los argumentos de la funcion if deben regresar un boolean");
+		}
+	}
 }
 
 class R24 extends Nodo{
@@ -472,6 +428,20 @@ class R24 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if(ambito.compareTo("")!=0){
+			tablasimbolos.buscaFuncion(Nodo.ambito);
+			if(sig!=null){
+				sig.validaTipos();
+				if(tipoDato==sig.tipoDato)
+					tipoDato=sig.tipoDato;
+				else
+					tablasimbolos.listaErrores.add("Error: Se debe regresar un dato tipo \""+tipoDato+"\"");
+			}
+		}
+	}
 }
 
 class R25 extends Nodo{
@@ -493,6 +463,14 @@ class R25 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		if(sig!=null){
+			sig.validaTipos();
+			tipoDato=sig.tipoDato;
+		}
 	}
 }
 
@@ -561,6 +539,14 @@ class R30 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if(sig!=null){
+			sig.validaTipos();
+			tipoDato=sig.tipoDato;
+		}
+	}
 }
 
 class R32 extends Nodo{
@@ -627,27 +613,17 @@ class R35 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
-}
-
-class R36 extends Nodo{
-	public R36(Pila pila){
-		super();
-		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
-		id="<Termino> ";
-		//tamSangria=1;
-	}
 	
-	public void muestra(){
-		System.out.print(id+" "+simbolo);
-	}
-
 	@Override
-	public void validaDatos() {
-		// TODO Auto-generated method stub
-		
+	public void validaTipos(){
+		if(sig!=null){
+			sig.validaTipos();
+			tipoDato=sig.tipoDato;
+		}
 	}
 }
+
+
 
 class R37 extends Nodo{
 	public R37(Pila pila){
@@ -666,6 +642,11 @@ class R37 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		tipoDato='i';
 	}
 }
 
@@ -687,6 +668,11 @@ class R38 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		tipoDato='f';
+	}
 }
 
 class R39 extends Nodo{
@@ -706,6 +692,11 @@ class R39 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		tipoDato='s';
 	}
 }
 
@@ -733,6 +724,17 @@ class R40 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		if(tablasimbolos.funcionDefinida(simbolo1[2])){
+			tablasimbolos.buscaFuncion(simbolo1[2]);
+			tipoDato=tablasimbolos.funcion.tipo;
+		}
+		else{
+			tablasimbolos.listaErrores.add("Error: la funcion \""+simbolo1[2]+"\" no esta definida");
+		}
 	}
 }
 
@@ -799,6 +801,14 @@ class R43 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if(sig!=null){
+			sig.validaTipos();
+			tipoDato=sig.tipoDato;
+		}
+	}
 }
 
 class R44 extends Nodo{
@@ -821,6 +831,14 @@ class R44 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if(sig!=null){
+			sig.validaTipos();
+			tipoDato=sig.tipoDato;
+		}
+	}
 }
 
 class R45 extends Nodo{
@@ -842,6 +860,14 @@ class R45 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		if(sig!=null){
+			sig.validaTipos();
+			tipoDato=sig.tipoDato;
+		}
 	}
 }
 
@@ -867,6 +893,14 @@ class R46 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
+			tipoDato=izq.tipoDato;
+		else
+			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
+	}
 }
 
 class R47 extends Nodo{
@@ -890,6 +924,14 @@ class R47 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
+			tipoDato=izq.tipoDato;
+		else
+			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
 	}
 }
 
@@ -915,6 +957,14 @@ class R48 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
+			tipoDato=izq.tipoDato;
+		else
+			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
+	}
 }
 
 class R49 extends Nodo{
@@ -938,6 +988,14 @@ class R49 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
+			tipoDato=izq.tipoDato;
+		else
+			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
 	}
 }
 
@@ -963,6 +1021,14 @@ class R50 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
+			tipoDato=izq.tipoDato;
+		else
+			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
+	}
 }
 
 class R51 extends Nodo{
@@ -987,6 +1053,14 @@ class R51 extends Nodo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void validaTipos(){
+		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
+			tipoDato=izq.tipoDato;
+		else
+			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
+	}
 }
 
 class R52 extends Nodo{
@@ -1006,5 +1080,13 @@ class R52 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		if(sig!=null){
+			sig.validaTipos();
+			tipoDato=sig.tipoDato;
+		}
 	}
 }

@@ -67,7 +67,7 @@ public class Sintactico {
 		}
 	}
 	
-	public void analiza(Lexico lexico){
+	public Nodo analiza(Lexico lexico){
 		Pila pila=new Pila();
 		ElementoPila fila,columna,accion;
 		Nodo nodo;
@@ -301,6 +301,8 @@ public class Sintactico {
 			//new Grafico().setVisible(true);
 		}
 		if(accion.elemento==0) System.out.println("Error");
+		
+		return nt.nodo;
 	}
 	
 	
