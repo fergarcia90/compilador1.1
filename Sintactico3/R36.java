@@ -30,7 +30,7 @@ public class R36 extends Nodo{
 			tipoDato=tablasimbolos.varLocal.tipo;
 		}
 		else{
-			tablasimbolos.listaErrores.add("Error: la variable \""+simbolo+"\" no esta definida");
+			tablasimbolos.listaErrores.add("Error: la variable \""+simbolo+"\" no esta definida "+Nodo.ambito);
 			tipoDato='v';
 		}
 	}

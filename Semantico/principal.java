@@ -8,16 +8,13 @@ public class principal {
 	public static void main(String args[]){
 		Nodo.tablasimbolos=null;
 		Nodo.ambito="";
-		Lexico lexico=new Lexico("int a;"
-								+ "int func(){"
-								+ "a=0;"
-								+ "int b;"
-								+ "b=a;"
-								+ "return a;"
+		Lexico lexico=new Lexico(
+								 "int func(int c, int g){"
 								+ "}"
 								+ "int main(){"
-								+ "int f;"
-								+ "f=func();"
+								+ "int m,j;"
+								+ "m= 2 + 2;"
+								+ "j=m;"
 								+ "}");
 		Sintactico sintactico=new Sintactico();
 		Semantico semantico=new Semantico();

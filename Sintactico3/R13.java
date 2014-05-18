@@ -28,21 +28,23 @@ public class R13 extends Nodo{
 	
 	public void validaTipos(){
 		tipoDato=dameTipo();
-		if(tablasimbolos.varLocalDefinida(simbolo1[1], ambito))
-			tablasimbolos.listaErrores.add("Error: variable local \""+simbolo1[1]+"\" redefinida");
-		else if(tablasimbolos.varGlobalDefinida(simbolo1[1]))
-			tablasimbolos.listaErrores.add("Error: variable global \""+simbolo1[1]+"\" redefinida");
-		else
+		if(tablasimbolos.varLocalDefinida(simbolo1[0], ambito))
+			tablasimbolos.listaErrores.add("Error: variable local \""+simbolo1[0]+"\" redefinida");
+		else if(tablasimbolos.varGlobalDefinida(simbolo1[0]))
+			tablasimbolos.listaErrores.add("Error: variable global \""+simbolo1[0]+"\" redefinida");
+		else{
 			tablasimbolos.agrega(this);
+			R9.parametros+=" "+simbolo1[1]+" "+simbolo1[0];
+		}
 		if(sig!=null)
 			sig.validaTipos();
 	}
 	
 	public char dameTipo(){
-		if(simbolo1[2].compareTo("int")==0) return 'i';
-		if(simbolo1[2].compareTo("float")==0) return 'f';
-		if(simbolo1[2].compareTo("string")==0) return 's';
-		if(simbolo1[2].compareTo("void")==0) return 'v';
+		if(simbolo1[1].compareTo("int")==0) return 'i';
+		if(simbolo1[1].compareTo("float")==0) return 'f';
+		if(simbolo1[1].compareTo("string")==0) return 's';
+		if(simbolo1[1].compareTo("void")==0) return 'v';
 		return ' ';
 	}
 }

@@ -550,6 +550,7 @@ class R30 extends Nodo{
 }
 
 class R32 extends Nodo{
+	public static int ind;
 	public R32(Pila pila){
 		super();
 		pila.pop();
@@ -557,6 +558,7 @@ class R32 extends Nodo{
 		pila.pop();
 		izq=((NoTerminal)pila.pop()).nodo;
 		id="<Argumentos> ";
+		ind=0;
 		//tamSangria=1;
 	}
 	
@@ -568,6 +570,32 @@ class R32 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		tablasimbolos.buscaFuncion(simbolo);
+		if(tablasimbolos.funcion.param.isEmpty())
+			tablasimbolos.listaErrores.add("Error: conflicto de parametros en funcion \""+simbolo+"\"");
+		else{
+			if(izq!=null){
+				izq.validaTipos();
+				tablasimbolos.buscaFuncion(simbolo);
+				if(tablasimbolos.funcion.param.get(ind)!=null){
+					System.out.println(tablasimbolos.funcion.param.get(R32.ind).tipo+" "+izq.tipoDato);
+					if(tablasimbolos.funcion.param.get(ind).tipo!=izq.tipoDato){
+						tablasimbolos.listaErrores.add("Error: conflicto de parametros en funcion \""+simbolo+"\"");
+					}
+				}
+			}
+			if(der!=null){
+				ind++;
+				System.out.println(ind);
+				der.simbolo=simbolo;
+				der.validaTipos();
+			}
+		}
+		ind=0;
 	}
 }
 
@@ -592,6 +620,28 @@ class R34 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void validaTipos(){
+		if(izq!=null){
+			izq.validaTipos();
+			tablasimbolos.buscaFuncion(simbolo);
+			if(R32.ind<tablasimbolos.funcion.param.size()){
+				System.out.println(tablasimbolos.funcion.param.get(R32.ind).tipo+" "+izq.tipoDato);
+				if(tablasimbolos.funcion.param.get(R32.ind).tipo!=izq.tipoDato){
+					tablasimbolos.listaErrores.add("Error: conflicto de parametros en funcion \""+simbolo+"\"");
+				}
+			}
+			else{
+				tablasimbolos.listaErrores.add("Error: conflicto de parametros en funcion \""+simbolo+"\"");
+			}
+		}
+		if(der!=null){
+			R32.ind++;
+			der.simbolo=simbolo;
+			der.validaTipos();
+		}
 	}
 }
 
@@ -735,6 +785,11 @@ class R40 extends Nodo{
 		else{
 			tablasimbolos.listaErrores.add("Error: la funcion \""+simbolo1[2]+"\" no esta definida");
 		}
+		if(sig!=null){
+			sig.simbolo=simbolo1[2];
+			sig.validaTipos();
+		}
+		Nodo.ambito="";
 	}
 }
 
@@ -928,6 +983,10 @@ class R47 extends Nodo{
 	
 	@Override
 	public void validaTipos(){
+		if(izq!=null)
+			izq.validaTipos();
+		if(der!=null)
+			der.validaTipos();
 		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
 			tipoDato=izq.tipoDato;
 		else

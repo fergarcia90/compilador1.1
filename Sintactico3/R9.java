@@ -2,6 +2,7 @@ package Sintactico3;
 
 public class R9 extends Nodo{
 	public String simbolo1[]=new String[4];
+	public static String parametros="";
 	public R9(Pila pila){
 		super();
 		pila.pop();
@@ -35,16 +36,18 @@ public class R9 extends Nodo{
 		Nodo.ambito=simbolo1[2];
 		if(tablasimbolos.funcionDefinida(Nodo.ambito))
 			tablasimbolos.listaErrores.add("Error: funcion \""+Nodo.ambito+"\" redefinida");
-		else
+		else{
 			tablasimbolos.agrega(this);
-		
-		if(izq!=null)
+		}
+		if(izq!=null){
 			izq.validaTipos();
+		}
 		if(der!=null){
 			der.tipoDato=tipoDato;
 			der.validaTipos();
 		}
 		ambito="";
+		parametros="";
 		}
 	
 	public char dameTipo(){

@@ -62,25 +62,32 @@ public class TablaSimbolos {
 		String identificador=defFun.simbolo1[2];
 		ElementoTabla elem;
 		
-		elem=new Funcion(tipo,identificador,"");
+		elem=new Funcion(tipo,identificador,R9.parametros);
 		agrega(elem);
 	}
 	
 	public void agrega(R11 parametros){
 		char tipo=parametros.dameTipo();
-		String identificador=parametros.simbolo1[0];
+		String identificador=parametros.simbolo1[1];
+		String func=Nodo.ambito;
 		ElementoTabla elem;
 		
-		elem=new Variable(tipo,identificador,Nodo.ambito);
+		elem=new Variable(tipo,identificador,func);
+		buscaFuncion(Nodo.ambito);
+		if(funcion!=null)
+			funcion.param.add((Variable)elem);
 		agrega(elem);
 	}
 	
 	public void agrega(R13 parametros){
 		char tipo=parametros.dameTipo();
-		String identificador=parametros.simbolo1[1];
+		String identificador=parametros.simbolo1[0];
 		ElementoTabla elem;
 		
 		elem=new Variable(tipo,identificador,Nodo.ambito);
+		buscaFuncion(Nodo.ambito);
+		if(funcion!=null)
+			funcion.param.add((Variable)elem);
 		agrega(elem);
 	}
 	

@@ -28,10 +28,12 @@ public class R11 extends Nodo{
 		tipoDato=dameTipo();
 		if(tablasimbolos.varLocalDefinida(simbolo1[1], ambito))
 			tablasimbolos.listaErrores.add("Error: variable local \""+simbolo1[1]+"\" redefinida");
-		else if(tablasimbolos.varGlobalDefinida(simbolo1[1]))
+		else if(tablasimbolos.varGlobalDefinida(simbolo1[0]))
 			tablasimbolos.listaErrores.add("Error: variable global \""+simbolo1[1]+"\" redefinida");
-		else
+		else{
 			tablasimbolos.agrega(this);
+			R9.parametros=simbolo1[0]+" "+simbolo1[1];
+		}
 		if(sig!=null)
 			sig.validaTipos();
 	}
