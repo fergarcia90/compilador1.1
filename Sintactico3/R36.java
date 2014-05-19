@@ -34,4 +34,8 @@ public class R36 extends Nodo{
 			tipoDato='v';
 		}
 	}
+	
+	public String generaCodigo(){
+		return "push "+simbolo+"\n";
+	}
 }

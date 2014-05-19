@@ -27,6 +27,14 @@ public abstract class Nodo {
 		if(der!=null) der.validaTipos();
 	}
 	
+	public String generaCodigo(){
+		String codigo="";
+		if(sig!=null) codigo+=sig.generaCodigo();
+		if(izq!=null) codigo+=izq.generaCodigo();
+		if(der!=null) codigo+=der.generaCodigo();
+		return codigo;
+	}
+	
 	public abstract void muestra();
 	
 	public abstract void validaDatos();
@@ -320,6 +328,16 @@ class R21 extends Nodo{
 		}
 		else
 			tablasimbolos.listaErrores.add("Error: variable \""+simbolo1[2]+"\" no definida");
+	}
+	
+	@Override
+	public String generaCodigo(){
+		String codigo="";
+		
+		codigo+=sig.generaCodigo();
+		codigo+="pop "+simbolo1[2];
+		
+		return codigo;
 	}
 }
 
@@ -698,6 +716,10 @@ class R37 extends Nodo{
 	public void validaTipos(){
 		tipoDato='i';
 	}
+	
+	public String generaCodigo(){
+		return "push "+simbolo+"\n";
+	}
 }
 
 class R38 extends Nodo{
@@ -723,6 +745,10 @@ class R38 extends Nodo{
 	public void validaTipos(){
 		tipoDato='f';
 	}
+	
+	public String generaCodigo(){
+		return "push "+simbolo+"\n";
+	}
 }
 
 class R39 extends Nodo{
@@ -747,6 +773,10 @@ class R39 extends Nodo{
 	@Override
 	public void validaTipos(){
 		tipoDato='s';
+	}
+	
+	public String generaCodigo(){
+		return "push "+simbolo+"\n";
 	}
 }
 
@@ -956,6 +986,19 @@ class R46 extends Nodo{
 		else
 			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
 	}
+	
+	public String generaCodigo(){
+		String codigo;
+		
+		codigo=izq.generaCodigo();
+		codigo+=der.generaCodigo();
+		if(simbolo.equals("*"))
+			codigo+="pop eax \npop ebx \nmul ebx \npush eax \n";
+		else
+			codigo+="pop eax \npop ebx \ndiv ebx \npush eax \n";
+		return codigo;
+		
+	}
 }
 
 class R47 extends Nodo{
@@ -979,6 +1022,18 @@ class R47 extends Nodo{
 	public void validaDatos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public String generaCodigo(){
+		String codigo;
+		codigo=izq.generaCodigo();
+		codigo+=der.generaCodigo();
+		if(simbolo.equals("+"))
+			codigo+="pop eax \npop ebx \nadd eax,ebx \npush eax \n";
+		else
+			codigo+="pop eax \npop ebx \nsub eax,ebx \npush eax \n";
+		return codigo;
 	}
 	
 	@Override
@@ -1020,9 +1075,31 @@ class R48 extends Nodo{
 	@Override
 	public void validaTipos(){
 		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
-			tipoDato=izq.tipoDato;
+			tipoDato='b';
 		else
 			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
+	}
+	
+	@Override
+	public String generaCodigo(){
+		String codigo="";
+		
+		codigo+=izq.generaCodigo();
+		codigo+=der.generaCodigo();
+		if(simbolo.equals("<"))
+			codigo+="pop eax \npop ebx \ncmp eax,ebx \njnl ";
+		if(simbolo.equals(">"))
+			codigo+="pop eax \npop ebx \ncmp eax,ebx \njng ";
+		if(simbolo.equals("=="))
+			codigo+="pop eax \npop ebx \ncmp eax,ebx \njne ";
+		if(simbolo.equals("<="))
+			codigo+="pop eax \npop ebx \ncmp eax,ebx \njnle ";
+		if(simbolo.equals(">="))
+			codigo+="pop eax \npop ebx \ncmp eax,ebx \njnge ";
+		if(simbolo.equals("!="))
+			codigo+="pop eax \npop ebx \ncmp eax,ebx \nje ";
+		
+		return codigo;
 	}
 }
 
@@ -1052,7 +1129,7 @@ class R49 extends Nodo{
 	@Override
 	public void validaTipos(){
 		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
-			tipoDato=izq.tipoDato;
+			tipoDato='b';
 		else
 			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
 	}
@@ -1083,10 +1160,20 @@ class R50 extends Nodo{
 	
 	@Override
 	public void validaTipos(){
-		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
+		if((izq.tipoDato=='b') && izq.tipoDato==der.tipoDato)
 			tipoDato=izq.tipoDato;
 		else
 			tablasimbolos.listaErrores.add("Error: no coinciden los tipos de dato");
+	}
+	
+	@Override
+	public String generaCodigo(){
+		String codigo="";
+		
+		codigo+=izq.generaCodigo();
+		codigo+=der.generaCodigo();
+		codigo+="pop eax \npop ebx \nand eax,ebx \npush eax";
+		return codigo;
 	}
 }
 

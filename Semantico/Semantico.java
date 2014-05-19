@@ -18,6 +18,8 @@ public class Semantico {
 		arbol.validaTipos();
 		tablasimbolos.muestra();
 		muestraErrores();
+		if(listaErrores.isEmpty())
+			System.out.println(arbol.generaCodigo());
 	}
 	
 	public void muestraErrores(){
