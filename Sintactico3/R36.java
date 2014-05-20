@@ -21,13 +21,13 @@ public class R36 extends Nodo{
 	
 	@Override
 	public void validaTipos(){
-		if(tablasimbolos.varGlobalDefinida(simbolo)){
-			tablasimbolos.buscaIdentificador(simbolo);
-			tipoDato=tablasimbolos.varGlobal.tipo;
-		}
-		else if(tablasimbolos.varLocalDefinida(simbolo, Nodo.ambito)){
+		if(tablasimbolos.varLocalDefinida(simbolo, Nodo.ambito)){
 			tablasimbolos.buscaIdentificador(simbolo);
 			tipoDato=tablasimbolos.varLocal.tipo;
+		}
+		else if(tablasimbolos.varGlobalDefinida(simbolo)){
+			tablasimbolos.buscaIdentificador(simbolo);
+			tipoDato=tablasimbolos.varGlobal.tipo;
 		}
 		else{
 			tablasimbolos.listaErrores.add("Error: la variable \""+simbolo+"\" no esta definida "+Nodo.ambito);

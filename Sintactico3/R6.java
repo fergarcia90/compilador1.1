@@ -29,10 +29,15 @@ public class R6 extends Nodo{
 	
 	public void validaTipos(){
 		tipoDato=dameTipo();
+		if(ambito.equals("")){
+			if(tablasimbolos.varGlobalDefinida(simbolo1[1]))
+				tablasimbolos.listaErrores.add("Error: variable global \""+simbolo1[1]+"\" redefinida");
+			else
+				tablasimbolos.agrega(this);
+		}
+		else
 		if(tablasimbolos.varLocalDefinida(simbolo1[1], ambito))
 			tablasimbolos.listaErrores.add("Error: variable local \""+simbolo1[1]+"\" redefinida");
-		else if(tablasimbolos.varGlobalDefinida(simbolo1[1]))
-			tablasimbolos.listaErrores.add("Error: variable global \""+simbolo1[1]+"\" redefinida");
 		else
 			tablasimbolos.agrega(this);
 		if(sig!=null){

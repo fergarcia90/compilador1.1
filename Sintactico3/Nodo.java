@@ -304,22 +304,22 @@ class R21 extends Nodo{
 	
 	@Override
 	public void validaTipos(){
-		if(tablasimbolos.varGlobalDefinida(simbolo1[2])){
+		if(tablasimbolos.varLocalDefinida(simbolo1[2], ambito)){
 			if(sig!=null){
 				sig.validaTipos();
 				tablasimbolos.buscaIdentificador(simbolo1[2]);
-				if(tablasimbolos.varGlobal.tipo==sig.tipoDato)
+				if(tablasimbolos.varLocal.tipo==sig.tipoDato)
 					tipoDato=sig.tipoDato;
 				else
 					tablasimbolos.listaErrores.add("Error: conflicto de tipos en asignacion de valor a variable \""
 							+simbolo1[2]+ "\"");
 			}
 		}
-		else if(tablasimbolos.varLocalDefinida(simbolo1[2], ambito)){
+		else if(tablasimbolos.varGlobalDefinida(simbolo1[2])){
 			if(sig!=null){
 				sig.validaTipos();
 				tablasimbolos.buscaIdentificador(simbolo1[2]);
-				if(tablasimbolos.varLocal.tipo==sig.tipoDato)
+				if(tablasimbolos.varGlobal.tipo==sig.tipoDato)
 					tipoDato=sig.tipoDato;
 				else
 					tablasimbolos.listaErrores.add("Error: conflicto de tipos en asignacion de valor a variable \""
@@ -496,9 +496,9 @@ class R27 extends Nodo{
 	public R27(Pila pila){
 		super();
 		pila.pop();
-		simbolo=((Terminal)pila.pop()).id;
-		pila.pop();
 		sig=((NoTerminal)pila.pop()).nodo;
+		pila.pop();
+		simbolo=((Terminal)pila.pop()).id;
 		id="<Otro> ";
 		//tamSangria=5;
 	}
@@ -811,14 +811,15 @@ class R40 extends Nodo{
 		if(tablasimbolos.funcionDefinida(simbolo1[2])){
 			tablasimbolos.buscaFuncion(simbolo1[2]);
 			tipoDato=tablasimbolos.funcion.tipo;
+			if(sig!=null){
+				sig.simbolo=simbolo1[2];
+				sig.validaTipos();
+			}
 		}
 		else{
 			tablasimbolos.listaErrores.add("Error: la funcion \""+simbolo1[2]+"\" no esta definida");
 		}
-		if(sig!=null){
-			sig.simbolo=simbolo1[2];
-			sig.validaTipos();
-		}
+		
 		Nodo.ambito="";
 	}
 }
@@ -981,6 +982,10 @@ class R46 extends Nodo{
 	
 	@Override
 	public void validaTipos(){
+		if(izq!=null)
+			izq.validaTipos();
+		if(der!=null)
+			der.validaTipos();
 		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
 			tipoDato=izq.tipoDato;
 		else
@@ -1074,6 +1079,10 @@ class R48 extends Nodo{
 	
 	@Override
 	public void validaTipos(){
+		if(izq!=null)
+			izq.validaTipos();
+		if(der!=null)
+			der.validaTipos();
 		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
 			tipoDato='b';
 		else
@@ -1128,6 +1137,10 @@ class R49 extends Nodo{
 	
 	@Override
 	public void validaTipos(){
+		if(izq!=null)
+			izq.validaTipos();
+		if(der!=null)
+			der.validaTipos();
 		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
 			tipoDato='b';
 		else
@@ -1160,6 +1173,10 @@ class R50 extends Nodo{
 	
 	@Override
 	public void validaTipos(){
+		if(izq!=null)
+			izq.validaTipos();
+		if(der!=null)
+			der.validaTipos();
 		if((izq.tipoDato=='b') && izq.tipoDato==der.tipoDato)
 			tipoDato=izq.tipoDato;
 		else
@@ -1202,6 +1219,10 @@ class R51 extends Nodo{
 	
 	@Override
 	public void validaTipos(){
+		if(izq!=null)
+			izq.validaTipos();
+		if(der!=null)
+			der.validaTipos();
 		if((izq.tipoDato=='i' || izq.tipoDato=='f') && izq.tipoDato==der.tipoDato)
 			tipoDato=izq.tipoDato;
 		else
