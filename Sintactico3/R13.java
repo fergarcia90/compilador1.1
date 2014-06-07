@@ -1,5 +1,7 @@
 package Sintactico3;
 
+import Semantico.Semantico;
+
 public class R13 extends Nodo{
 	public String simbolo1[]=new String[3];
 	public R13(Pila pila){
@@ -46,5 +48,16 @@ public class R13 extends Nodo{
 		if(simbolo1[1].compareTo("string")==0) return 's';
 		if(simbolo1[1].compareTo("void")==0) return 'v';
 		return ' ';
+	}
+	
+	@Override
+	public String generaCodigo(){
+		String codigo;
+		codigo=simbolo1[0]+"_"+Nodo.ambito+" dd ?";
+		Semantico.listaVariables.add(codigo);
+		codigo="pop "+simbolo1[0]+"_"+Nodo.ambito+"\n";
+		if(sig!=null)
+			codigo+=sig.generaCodigo();
+		return codigo;
 	}
 }

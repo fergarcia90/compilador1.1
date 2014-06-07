@@ -6,6 +6,7 @@ import Semantico.TablaSimbolos;
 public abstract class Nodo {
 	
 	protected String simbolo,id;
+	public static int contador;
 	public Nodo sig,der,izq;
 	int tamSangria;
 	public char tipoDato;
@@ -278,6 +279,7 @@ class R20 extends Nodo{
 
 class R21 extends Nodo{
 	String simbolo1[]=new String[3];
+	boolean local=false;
 	public R21(Pila pila){
 		super();
 		pila.pop();
@@ -305,6 +307,7 @@ class R21 extends Nodo{
 	@Override
 	public void validaTipos(){
 		if(tablasimbolos.varLocalDefinida(simbolo1[2], ambito)){
+			local=true;
 			if(sig!=null){
 				sig.validaTipos();
 				tablasimbolos.buscaIdentificador(simbolo1[2]);
@@ -335,7 +338,10 @@ class R21 extends Nodo{
 		String codigo="";
 		
 		codigo+=sig.generaCodigo();
-		codigo+="pop "+simbolo1[2];
+		if(local)
+			codigo+="pop "+simbolo1[2]+"_"+Nodo.ambito+"\n";
+		else
+			codigo+="pop "+simbolo1[2]+"\n";
 		
 		return codigo;
 	}
@@ -460,6 +466,8 @@ class R24 extends Nodo{
 			}
 		}
 	}
+	
+	
 }
 
 class R25 extends Nodo{
@@ -821,6 +829,15 @@ class R40 extends Nodo{
 		}
 		
 		Nodo.ambito="";
+	}
+	
+	@Override
+	public String generaCodigo(){
+		String codigo="";
+		if(sig!=null)
+			codigo+=sig.generaCodigo();
+		codigo+="call "+simbolo1[2]+"\n";
+		return codigo;
 	}
 }
 

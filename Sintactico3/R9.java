@@ -57,4 +57,17 @@ public class R9 extends Nodo{
 		if(simbolo1[3].compareTo("void")==0) return 'v';
 		return ' ';
 	}
+	
+	@Override
+	public String generaCodigo(){
+		Nodo.ambito=simbolo1[2];
+		String codigo;
+		codigo=simbolo1[2]+" proc\n";
+		if(izq!=null)
+			codigo+=izq.generaCodigo();
+		if(der!=null)
+			codigo+=der.generaCodigo();
+		codigo+="ret\n"+simbolo1[2]+" endp\n";
+		return codigo;
+	}
 }

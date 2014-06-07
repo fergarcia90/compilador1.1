@@ -1,4 +1,5 @@
 package Sintactico3;
+import Semantico.Semantico;
 
 public class R6 extends Nodo{
 	public String simbolo1[]=new String[3];
@@ -52,5 +53,15 @@ public class R6 extends Nodo{
 		if(simbolo1[2].compareTo("string")==0) return 's';
 		if(simbolo1[2].compareTo("void")==0) return 'v';
 		return ' ';
+	}
+	
+	public String generaCodigo(){
+		String codigo;
+		if(Nodo.ambito.equals(""))
+			codigo=simbolo1[1]+" dd ?";
+		else
+			codigo=simbolo1[1]+"_"+Nodo.ambito+" dd ?";
+		Semantico.listaVariables.add(codigo);
+		return "";
 	}
 }

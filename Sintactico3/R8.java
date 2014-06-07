@@ -1,5 +1,7 @@
 package Sintactico3;
 
+import Semantico.Semantico;
+
 public class R8 extends Nodo{
 	public String simbolo1[]=new String[2];
 	public R8(Pila pila){
@@ -30,5 +32,16 @@ public class R8 extends Nodo{
 			tablasimbolos.listaErrores.add("Error: variable \""+simbolo1[0]+"\" redefinida");
 		else
 			tablasimbolos.agrega(this);
+	}
+	
+	@Override
+	public String generaCodigo(){
+		String codigo;
+		if(!Nodo.ambito.equals(""))
+			codigo=simbolo1[1]+" dd ?";
+		else
+			codigo=simbolo1[1]+"_"+Nodo.ambito+" dd ?";
+		Semantico.listaVariables.add(codigo);
+		return "";
 	}
 }

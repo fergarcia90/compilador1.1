@@ -36,6 +36,6 @@ public class R36 extends Nodo{
 	}
 	
 	public String generaCodigo(){
-		return "push "+simbolo+"\n";
+		return "push "+simbolo+"_"+Nodo.ambito+"\n";
 	}
 }
