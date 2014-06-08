@@ -61,13 +61,16 @@ public class R9 extends Nodo{
 	@Override
 	public String generaCodigo(){
 		Nodo.ambito=simbolo1[2];
+		Nodo.contpar=0;
 		String codigo;
 		codigo=simbolo1[2]+" proc\n";
+		codigo+="push ebp\nmov ebp,esp\n";
 		if(izq!=null)
 			codigo+=izq.generaCodigo();
 		if(der!=null)
 			codigo+=der.generaCodigo();
-		codigo+="ret\n"+simbolo1[2]+" endp\n";
+		codigo+="pop ebp\nret\n"+simbolo1[2]+" endp\n";
+		Nodo.contpar=0;
 		return codigo;
 	}
 }

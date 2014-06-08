@@ -12,6 +12,9 @@ public abstract class Nodo {
 	public char tipoDato;
 	public static String ambito;
 	public static TablaSimbolos tablasimbolos;
+	public static int contpar;
+	public static int contpush;
+	public static int etiquetas;
 	
 	public Nodo(){
 		sig=null;
@@ -19,6 +22,7 @@ public abstract class Nodo {
 		der=null;
 		tamSangria=0;
 		tipoDato='v';
+		etiquetas=0;
 	}
 	
 	public void validaTipos(){
@@ -34,6 +38,15 @@ public abstract class Nodo {
 		if(izq!=null) codigo+=izq.generaCodigo();
 		if(der!=null) codigo+=der.generaCodigo();
 		return codigo;
+	}
+	
+	public String sigEtiqueta(){
+		return "E"+(etiquetas++);
+	}
+	
+	public String etiquetaActual(){
+		return "E"+etiquetas;
+				
 	}
 	
 	public abstract void muestra();
@@ -341,7 +354,7 @@ class R21 extends Nodo{
 		if(local)
 			codigo+="pop "+simbolo1[2]+"_"+Nodo.ambito+"\n";
 		else
-			codigo+="pop "+simbolo1[2]+"\n";
+			codigo+="pop "+simbolo1[2]+"_"+Nodo.ambito+"\n";
 		
 		return codigo;
 	}
@@ -387,6 +400,22 @@ class R22 extends Nodo{
 				tablasimbolos.listaErrores.add("Error: los argumentos de la funcion if deben regresar un boolean");
 		}
 	}
+	
+	@Override
+	public String generaCodigo(){
+		String codigo="";
+		String medio=sigEtiqueta();
+		String fin=sigEtiqueta();
+		codigo+=izq.generaCodigo();
+		codigo+=" "+medio+"\n";
+		codigo+=der.generaCodigo();
+		codigo+="jmp "+fin+"\n";
+		codigo+=medio+":\n";
+		if(sig!=null)
+			codigo+=sig.generaCodigo();
+		codigo+=fin+":\n";
+		return codigo;
+	}
 }
 
 class R23 extends Nodo{
@@ -426,6 +455,19 @@ class R23 extends Nodo{
 			else
 				tablasimbolos.listaErrores.add("Error: los argumentos de la funcion if deben regresar un boolean");
 		}
+	}
+	@Override
+	public String generaCodigo(){
+		String codigo="";
+		String whil=sigEtiqueta();
+		String fin=sigEtiqueta();
+		codigo+=whil+":\n";
+		codigo+=izq.generaCodigo();
+		codigo+=" "+fin+"\n";
+		codigo+=der.generaCodigo();
+		codigo+="jmp "+whil+"\n";
+		codigo+=fin+":\n";
+		return codigo;
 	}
 }
 
@@ -623,6 +665,17 @@ class R32 extends Nodo{
 		}
 		ind=0;
 	}
+	
+	@Override
+	public String generaCodigo(){
+		Nodo.contpush++;
+		String codigo="";
+		if(izq!=null)
+			codigo+=izq.generaCodigo();
+		if(der!=null)
+			codigo+=der.generaCodigo();
+		return codigo;	
+	}
 }
 
 class R34 extends Nodo{
@@ -668,6 +721,17 @@ class R34 extends Nodo{
 			der.simbolo=simbolo;
 			der.validaTipos();
 		}
+	}
+	
+	@Override
+	public String generaCodigo(){
+		Nodo.contpush++;
+		String codigo="";
+		if(izq!=null)
+			codigo+=izq.generaCodigo();
+		if(der!=null)
+			codigo+=der.generaCodigo();
+		return codigo;	
 	}
 }
 
@@ -834,9 +898,13 @@ class R40 extends Nodo{
 	@Override
 	public String generaCodigo(){
 		String codigo="";
+		Nodo.contpush=0;
 		if(sig!=null)
 			codigo+=sig.generaCodigo();
 		codigo+="call "+simbolo1[2]+"\n";
+		for(int i=0;i<Nodo.contpush;i++)
+			codigo+="pop edx\n";
+		Nodo.contpush=0;
 		return codigo;
 	}
 }
@@ -1015,9 +1083,9 @@ class R46 extends Nodo{
 		codigo=izq.generaCodigo();
 		codigo+=der.generaCodigo();
 		if(simbolo.equals("*"))
-			codigo+="pop eax \npop ebx \nmul ebx \npush eax \n";
+			codigo+="pop eax \npop ebx \nmul ebx \npush eax\n";
 		else
-			codigo+="pop eax \npop ebx \ndiv ebx \npush eax \n";
+			codigo+="pop eax \npop ebx \ndiv ebx \npush eax\n";
 		return codigo;
 		
 	}
@@ -1052,9 +1120,9 @@ class R47 extends Nodo{
 		codigo=izq.generaCodigo();
 		codigo+=der.generaCodigo();
 		if(simbolo.equals("+"))
-			codigo+="pop eax \npop ebx \nadd eax,ebx \npush eax \n";
+			codigo+="pop eax \npop ebx \nadd eax,ebx \npush eax\n";
 		else
-			codigo+="pop eax \npop ebx \nsub eax,ebx \npush eax \n";
+			codigo+="pop eax \npop ebx \nsub eax,ebx \npush eax\n";
 		return codigo;
 	}
 	
@@ -1113,17 +1181,17 @@ class R48 extends Nodo{
 		codigo+=izq.generaCodigo();
 		codigo+=der.generaCodigo();
 		if(simbolo.equals("<"))
-			codigo+="pop eax \npop ebx \ncmp eax,ebx \njnl ";
+			codigo+="pop eax \npop ebx \ncmp ebx,eax \njnl ";
 		if(simbolo.equals(">"))
-			codigo+="pop eax \npop ebx \ncmp eax,ebx \njng ";
+			codigo+="pop eax \npop ebx \ncmp ebx,eax \njng ";
 		if(simbolo.equals("=="))
-			codigo+="pop eax \npop ebx \ncmp eax,ebx \njne ";
+			codigo+="pop eax \npop ebx \ncmp ebx,eax \njne ";
 		if(simbolo.equals("<="))
-			codigo+="pop eax \npop ebx \ncmp eax,ebx \njnle ";
+			codigo+="pop eax \npop ebx \ncmp ebx,eax \njnle ";
 		if(simbolo.equals(">="))
-			codigo+="pop eax \npop ebx \ncmp eax,ebx \njnge ";
+			codigo+="pop eax \npop ebx \ncmp ebx,eax \njnge ";
 		if(simbolo.equals("!="))
-			codigo+="pop eax \npop ebx \ncmp eax,ebx \nje ";
+			codigo+="pop eax \npop ebx \ncmp ebx,eax \nje ";
 		
 		return codigo;
 	}

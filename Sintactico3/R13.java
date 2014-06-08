@@ -55,9 +55,12 @@ public class R13 extends Nodo{
 		String codigo;
 		codigo=simbolo1[0]+"_"+Nodo.ambito+" dd ?";
 		Semantico.listaVariables.add(codigo);
-		codigo="pop "+simbolo1[0]+"_"+Nodo.ambito+"\n";
-		if(sig!=null)
+		codigo="mov eax,[ebp+"+(8+(Nodo.contpar*4))+"]\n";
+		codigo+="mov "+simbolo1[0]+"_"+Nodo.ambito+",eax\n";
+		if(sig!=null){
+			Nodo.contpar++;
 			codigo+=sig.generaCodigo();
+		}
 		return codigo;
 	}
 }
