@@ -15,6 +15,7 @@ public abstract class Nodo {
 	public static int contpar;
 	public static int contpush;
 	public static int etiquetas;
+	public static boolean retur=true;
 	
 	public Nodo(){
 		sig=null;
@@ -351,10 +352,18 @@ class R21 extends Nodo{
 		String codigo="";
 		
 		codigo+=sig.generaCodigo();
+		if(Nodo.retur){
 		if(local)
 			codigo+="pop "+simbolo1[2]+"_"+Nodo.ambito+"\n";
 		else
 			codigo+="pop "+simbolo1[2]+"_"+Nodo.ambito+"\n";
+		}
+		else{
+			if(local)
+				codigo+="mov "+simbolo1[2]+"_"+Nodo.ambito+",eax\n";
+			else
+				codigo+="mov "+simbolo1[2]+"_"+Nodo.ambito+",eax\n";
+		}
 		
 		return codigo;
 	}

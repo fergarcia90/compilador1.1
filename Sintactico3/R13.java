@@ -53,13 +53,20 @@ public class R13 extends Nodo{
 	@Override
 	public String generaCodigo(){
 		String codigo;
-		codigo=simbolo1[0]+"_"+Nodo.ambito+" dd ?";
+		if(simbolo1[1].compareTo("float")==0)
+			codigo=simbolo1[0]+"_"+Nodo.ambito+" dq ?";
+		else
+			codigo=simbolo1[0]+"_"+Nodo.ambito+" dd ?";
 		Semantico.listaVariables.add(codigo);
-		codigo="mov eax,[ebp+"+(8+(Nodo.contpar*4))+"]\n";
-		codigo+="mov "+simbolo1[0]+"_"+Nodo.ambito+",eax\n";
 		if(sig!=null){
+			codigo=sig.generaCodigo();
 			Nodo.contpar++;
-			codigo+=sig.generaCodigo();
+			codigo+="mov eax,[ebp+"+(8+(Nodo.contpar*4))+"]\n";
+			codigo+="mov "+simbolo1[0]+"_"+Nodo.ambito+",eax\n";
+		}
+		else{
+			codigo="mov eax,[ebp+"+(8+(Nodo.contpar*4))+"]\n";
+			codigo+="mov "+simbolo1[0]+"_"+Nodo.ambito+",eax\n";
 		}
 		return codigo;
 	}

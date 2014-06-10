@@ -57,8 +57,12 @@ public class R6 extends Nodo{
 	
 	public String generaCodigo(){
 		String codigo;
-		if(Nodo.ambito.equals(""))
-			codigo=simbolo1[1]+" dd ?";
+		if(Nodo.ambito.equals("")){
+			if(simbolo1[2].compareTo("float")==0)
+				codigo=simbolo1[1]+" dq ?";
+			else
+				codigo=simbolo1[1]+" dd ?";
+		}
 		else
 			codigo=simbolo1[1]+"_"+Nodo.ambito+" dd ?";
 		Semantico.listaVariables.add(codigo);
